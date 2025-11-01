@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- A classe 'dark' será adicionada aqui pelo JS -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TÍTULO ATUALIZADO -->
+  <title>Imperium Atlas | Marketing de Performance & Inovação</title>
+  <meta name="description"
+    content="A Imperium Atlas usa tecnologia e conhecimento avançado para entregar resultados exponenciais em Gestão de Tráfego, Social Media e Web Design.">
+
+  <!-- 
+      SCRIPT CRÍTICO (Anti-FOUC)
+      Executado antes de tudo. Garante que a classe 'dark' seja aplicada
+      no <html> antes que o navegador pinte a tela.
+    -->
+  <script>
+    (function () {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
+  <!-- 
+      SCRIPT DE CONFIGURAÇÃO DO TAILWIND (CDN)
+      CORREÇÃO: Primeiro, carrega a biblioteca principal do Tailwind.
+    -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 
+      Depois, define a configuração.
+      Isso garante que o objeto 'tailwind' já exista.
+    -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      // Outras configurações, se necessário
+    }
+  </script>
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- MELHORIA: Google Icons (Material Symbols) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <!-- Estilos Customizados (Agora com suporte a .dark) -->
+  <style>
+    /* MELHORIA: Rolagem suave */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      /* Light Mode (Padrão) */
+      background-color: #FFFFFF;
+      color: #111827;
+      /* gray-900 */
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark Mode */
+    .dark body {
+      background-color: #000000;
+      color: #E0E0E0;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    html:not(.dark) #particles-js {
+      opacity: 0.3;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Gradientes */
+    .text-gradient-cyan-purple {
+      background-image: linear-gradient(90deg, #00BFFF, #8A2BE2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .shadow-glow-cyan {
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.4), 0 0 30px rgba(0, 191, 255, 0.2);
+    }
+
+    /* Animação (Scroll) */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-100 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-200 {
+      transition-delay: 0.2s;
+    }
+
+    .delay-300 {
+      transition-delay: 0.3s;
+    }
+
+    /* Bloco de Código (Light/Dark) */
+    .code-block {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      border-radius: 8px;
+      /* Light Mode (Padrão) */
+      background-color: #F9FAFB;
+      /* gray-50 */
+      border: 1px solid #E5E7EB;
+      /* gray-200 */
+    }
+
+    .code-block .token-comment {
+      color: #6A737D;
+    }
+
+    .code-block .token-function {
+      color: #005A9C;
+    }
+
+    .code-block .token-keyword {
+      color: #D73A49;
+    }
+
+    .code-block .token-string {
+      color: #032F62;
+    }
+
+    .code-block .token-punctuation {
+      color: #555;
+    }
+
+    .code-block .token-boolean {
+      color: #D73A49;
+    }
+
+    .code-block .token-number {
+      color: #005A9C;
+    }
+
+
+    /* Dark Mode */
+    .dark .code-block {
+      background-color: #0A0A0A;
+      border: 1px solid #222;
+    }
+
+    .dark .code-block .token-function {
+      color: #00BFFF;
+    }
+
+    .dark .code-block .token-keyword {
+      color: #8A2BE2;
+    }
+
+    .dark .code-block .token-string {
+      color: #9BCA55;
+    }
+
+    .dark .code-block .token-boolean {
+      color: #ff8c00;
+    }
+
+    .dark .code-block .token-number {
+      color: #00BFFF;
+    }
+
+    /* Estilo base para ícones (vertical align) */
+    .material-symbols-outlined {
+      vertical-align: middle;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="dark:bg-black dark:text-gray-200">
+
+  <div id="particles-js"></div>
+
+  <div class="content-wrapper">
+
+    <!-- Header (com Toggle Button) -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-gray-200 dark:border-gray-900">
+      <nav class="container mx-auto max-w-6xl px-6 py-4 flex justify-between items-center">
+        <a href="#hero" class="text-2xl font-extrabold tracking-tighter text-black dark:text-white">
+          Imperium<span class="text-gradient-cyan-purple">Atlas</span>
+        </a>
+
+        <!-- Menu Desktop -->
+        <ul class="hidden md:flex items-center space-x-6">
+          <li><a href="#solucoes"
+              class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300">Serviços</a>
+          </li>
+          <li><a href="#plataforma"
+              class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300">Metodologia</a>
+          </li>
+          <li><a href="#resultados"
+              class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300">Resultados</a>
+          </li>
+          <li>
+            <!-- LINK ATUALIZADO (DIRETO P/ WHATSAPP) -->
+            <a href="https://wa.me/5522997028900" target="_blank" rel="noopener noreferrer"
+              class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold px-4 py-2 rounded-md transition-shadow duration-300 hover:shadow-glow-cyan">
+              Fale Conosco
+            </a>
+          </li>
+          <li>
+            <!-- Theme Toggle Button (Desktop) -->
+            <button type="button"
+              class="theme-toggle-button text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2">
+              <span class="theme-toggle-icon-dark material-symbols-outlined hidden text-xl">dark_mode</span>
+              <span class="theme-toggle-icon-light material-symbols-outlined hidden text-xl">light_mode</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Botão Menu Mobile -->
+        <button id="mobile-menu-button" type="button"
+          class="md:hidden text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2">
+          <span id="mobile-menu-icon-open" class="material-symbols-outlined text-2xl">menu</span>
+          <span id="mobile-menu-icon-close" class="material-symbols-outlined hidden text-2xl">close</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Menu Mobile (Flyout) -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 pt-20 bg-white/80 dark:bg-black/80 backdrop-blur-lg">
+      <ul class="flex flex-col items-center justify-center h-full space-y-8">
+        <li><a href="#solucoes"
+            class="mobile-menu-link text-2xl font-bold text-gray-800 dark:text-gray-200">Serviços</a></li>
+        <li><a href="#plataforma"
+            class="mobile-menu-link text-2xl font-bold text-gray-800 dark:text-gray-200">Metodologia</a></li>
+        <li><a href="#resultados"
+            class="mobile-menu-link text-2xl font-bold text-gray-800 dark:text-gray-200">Resultados</a></li>
+        <li>
+          <!-- LINK ATUALIZADO (DIRETO P/ WHATSAPP) -->
+          <a href="https://wa.me/5522997028900" target="_blank" rel="noopener noreferrer"
+            class="mobile-menu-link bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold px-6 py-3 rounded-md">
+            Fale Conosco
+          </a>
+        </li>
+        <!-- CORREÇÃO: Adicionado Theme Toggle ao Menu Mobile -->
+        <li class="pt-8">
+          <button type="button"
+            class="theme-toggle-button text-gray-600 dark:text-gray-200 border border-gray-300 dark:border-gray-700 rounded-lg p-2">
+            <span class="theme-toggle-icon-dark material-symbols-outlined hidden text-xl">dark_mode</span>
+            <span class="theme-toggle-icon-light material-symbols-outlined hidden text-xl">light_mode</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <!-- Seção Hero -->
+      <section id="hero" class="min-h-screen flex items-center justify-center text-center px-6 pt-20">
+        <div class="max-w-4xl reveal-on-scroll is-visible">
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-black dark:text-white mb-6">
+            Marketing. <br>
+            <span class="text-gradient-cyan-purple">Resultados Exponenciais.</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">
+            Usamos dados, tecnologia e conhecimento avançado para criar estratégias de marketing digital que colocam seu
+            negócio à frente.
+          </p>
+          <!-- LINK ATUALIZADO (APONTA P/ #solucoes) -->
+          <a href="#solucoes"
+            class="bg-gradient-to-r from-cyan-400 to-blue-600 text-white text-lg font-bold py-4 px-10 rounded-full transition-all duration-300 hover:shadow-glow-cyan transform hover:scale-105">
+            Conheça nossas Soluções
+          </a>
+        </div>
+      </section>
+
+      <!-- Seção Soluções -->
+      <section id="solucoes" class="py-16 lg:py-32">
+        <div class="container mx-auto max-w-6xl px-6">
+          <h2 class="text-4xl lg:text-5xl font-extrabold text-center text-black dark:text-white mb-16 reveal-on-scroll">
+            Nossos Serviços de <span class="text-gradient-cyan-purple">Performance</span>
+          </h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Card 1 (Tráfego) -->
+            <div
+              class="bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-gray-900 p-8 rounded-xl reveal-on-scroll delay-100">
+              <span class="material-symbols-outlined text-4xl text-gradient-cyan-purple mb-3">query_stats</span>
+              <h3 class="text-2xl font-bold text-black dark:text-white mb-3">Gestão de Tráfego</h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Otimizamos seu investimento em Google & Meta Ads. Usamos análise de dados para encontrar seu cliente
+                ideal e trazer resultados reais.
+              </p>
+            </div>
+            <!-- Card 2 (Social Media - Destaque) -->
+            <div
+              class="bg-gray-100 dark:bg-[#0A0A0A] border border-cyan-300 dark:border-cyan-700 p-8 rounded-xl ring-2 ring-cyan-500/50 reveal-on-scroll delay-200">
+              <span class="material-symbols-outlined text-4xl text-gradient-cyan-purple mb-3">hub</span>
+              <h3 class="text-2xl font-bold text-gradient-cyan-purple mb-3">Social Media Estratégico</h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Mais que posts. Criamos conexões. Gerenciamos suas redes com foco em engajamento, construção de marca e
+                conversão.
+              </p>
+            </div>
+            <!-- Card 3 (Web Design) -->
+            <div
+              class="bg-gray-50 dark:bg-[#050505] border border-gray-200 dark:border-gray-900 p-8 rounded-xl reveal-on-scroll delay-300">
+              <span class="material-symbols-outlined text-4xl text-gradient-cyan-purple mb-3">design_services</span>
+              <h3 class="text-2xl font-bold text-black dark:text-white mb-3">Web Design de Conversão</h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                Desenvolvemos sites e landing pages ultrarrápidos, responsivos e otimizados para transformar visitantes
+                em clientes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Plataforma (Metodologia) -->
+      <section id="plataforma" class="py-16 lg:py-32">
+        <div class="container mx-auto max-w-6xl px-6 flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/2 reveal-on-scroll">
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-black dark:text-white mb-6">
+              Tecnologia como <br> Nossa Aliada.
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+              Não confiamos no "achismo". Nossas decisões são guiadas por dados. Usamos as ferramentas mais avançadas
+              para analisar métricas, otimizar funis e garantir que sua estratégia esteja sempre um passo à frente.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400">
+              A IA é nossa ferramenta para potencializar o seu resultado, não o produto final. O produto é o seu
+              sucesso.
+            </p>
+          </div>
+          <!-- Bloco de Código (JSON de Marketing) -->
+          <!-- CORREÇÃO: Adicionado overflow-x-auto para responsividade -->
+          <div class="lg:w-1/2 w-full reveal-on-scroll delay-200">
+            <div class="code-block p-6 overflow-x-auto">
+              <pre><code><span class="token-comment">// Config. de Campanha (Otimização de ROI)</span>
+                  <span class="token-punctuation">{</span>
+                  <span class="token-keyword">"campaign_id"</span><span class="token-punctuation">:</span> <span
+                    class="token-string">"CP-2025-Q4"</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"service"</span><span class="token-punctuation">:</span> <span
+                    class="token-string">"performance_traffic"</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"platforms"</span><span class="token-punctuation">:</span> <span
+                    class="token-punctuation">[</span><span class="token-string">"google_ads"</span><span
+                    class="token-punctuation">,</span> <span class="token-string">"meta_ads"</span><span
+                    class="token-punctuation">]</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"strategy"</span><span class="token-punctuation">:</span> <span
+                    class="token-string">"roi_maximization"</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"kpis_target"</span><span class="token-punctuation">:</span> <span
+                    class="token-punctuation">{</span>
+                  <span class="token-keyword">"roi"</span><span class="token-punctuation">:</span> <span
+                    class="token-string">"&gt; 3.5"</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"cpa_max"</span><span class="token-punctuation">:</span> <span
+                    class="token-number">45.00</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"ctr_min"</span><span class="token-punctuation">:</span> <span
+                    class="token-string">"3.0%"</span>
+                  <span class="token-punctuation">}</span><span class="token-punctuation">,</span>
+                  <span class="token-keyword">"ai_optimization"</span><span class="token-punctuation">:</span> <span
+                    class="token-boolean">true</span>
+                  <span class="token-punctuation">}</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Resultados (Prova Social dos Serviços) -->
+      <section id="resultados" class="py-16 lg:py-32">
+        <div class="container mx-auto max-w-6xl px-6">
+          <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-center md:text-left reveal-on-scroll">
+              <h2 class="text-6xl md:text-7xl lg:text-8xl font-black text-gradient-cyan-purple tracking-tighter"
+                data-target="100">
+                <span class="counter">0</span>k+
+              </h2>
+              <p class="text-2xl text-black dark:text-white font-bold mt-2">
+                Em receita gerada para nossos clientes.
+              </p>
+            </div>
+            <div class="text-center md:text-left reveal-on-scroll delay-200">
+              <h2 class="text-6xl md:text-7xl lg:text-8xl font-black text-black dark:text-white tracking-tighter"
+                data-target="20">
+                <span class="counter">0</span>+
+              </h2>
+              <p class="text-2xl text-gray-600 dark:text-gray-400 font-bold mt-2">
+                Parceiros na vanguarda digital.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Final -->
+      <section id="contato" class="py-16 lg:py-32 text-center">
+        <div class="container mx-auto max-w-3xl px-6 reveal-on-scroll">
+          <h2 class="text-4xl lg:text-6xl font-extrabold text-black dark:text-white mb-6">
+            Pronto para <span class="text-gradient-cyan-purple">Resultados Reais</span>?
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">
+            O futuro não espera. Deixe nossa expertise em marketing digital impulsionar seu negócio.
+          </p>
+          <!-- LINK ATUALIZADO (NÚMERO CORRETO) -->
+          <a href="https://wa.me/5522997028900" target="_blank" rel="noopener noreferrer"
+            class="bg-black dark:bg-white text-white dark:text-black text-lg font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:bg-gray-800 dark:hover:bg-gray-200">
+            Agende sua Consultoria
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-200 dark:border-gray-900">
+      <div class="container mx-auto max-w-6xl px-6 text-center text-gray-500 dark:text-gray-600">
+        <!-- EMAIL E INSTA ADICIONADOS/ATUALIZADOS -->
+        <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6">
+          <!-- LINK DO INSTAGRAM ATUALIZADO CONFORME SOLICITADO -->
+          <a href="https://www.instagram.com/imperiumatlas/" target="_blank" rel="noopener noreferrer"
+            class="text-cyan-600 dark:text-cyan-500 hover:text-cyan-400 transition-colors duration-300">
+            Siga nossa jornada no Instagram
+          </a>
+          <a href="mailto:imperiumatlass@gmail.com"
+            class="text-cyan-600 dark:text-cyan-500 hover:text-cyan-400 transition-colors duration-300 inline-flex items-center">
+            <span class="material-symbols-outlined mr-1 text-lg">email</span>
+            imperiumatlass@gmail.com
+          </a>
+        </div>
+        <!-- COPYRIGHT MOVIDO PARA O FINAL -->
+        <p class="mt-6">&copy; 2025 Imperium Atlas. Construindo o amanhã, hoje.</p>
+      </div>
+    </footer>
+
+  </div> <!-- Fim do content-wrapper -->
+
+  <!-- JS (particles.js + Lógica de Toggle e Scroll) -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    'use strict';
+
+    let pJS_instance = null; // Armazena a instância do particles.js
+
+    // --- 1. Lógica do Theme Toggle ---
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle-button');
+    const darkIcons = document.querySelectorAll('.theme-toggle-icon-dark');
+    const lightIcons = document.querySelectorAll('.theme-toggle-icon-light');
+
+    // Função para ATUALIZAR TODOS os ícones
+    function updateToggleIcons(isDark) {
+      darkIcons.forEach(icon => icon.classList.toggle('hidden', !isDark));
+      lightIcons.forEach(icon => icon.classList.toggle('hidden', isDark));
+    }
+
+    // Define o ícone correto no carregamento inicial
+    const initialIsDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    updateToggleIcons(initialIsDark);
+
+    // Adiciona o listener a AMBOS os botões
+    themeToggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        localStorage.theme = isDarkMode ? 'dark' : 'light';
+        updateToggleIcons(isDarkMode);
+        updateParticlesTheme(isDarkMode);
+      });
+    });
+
+
+    // --- 2. Lógica do Menu Mobile ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOpenIcon = document.getElementById('mobile-menu-icon-open');
+    const mobileMenuCloseIcon = document.getElementById('mobile-menu-icon-close');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    const toggleMobileMenu = () => {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenuOpenIcon.classList.toggle('hidden');
+      mobileMenuCloseIcon.classList.toggle('hidden');
+    };
+
+    // Abre/Fecha o menu ao clicar no botão
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    // Fecha o menu ao clicar em um link
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', toggleMobileMenu);
+    });
+
+    // --- 3. Configuração do Particles.js ---
+    const particleThemes = {
+      dark: {particleColor: "#00BFFF", lineColor: "#8A2BE2"},
+      light: {particleColor: "#004E98", lineColor: "#555555"}
+    };
+
+    function updateParticlesTheme(isDark) {
+      if (!pJS_instance) return;
+      const theme = isDark ? particleThemes.dark : particleThemes.light;
+      pJS_instance.particles.color.value = theme.particleColor;
+      pJS_instance.particles.line_linked.color = theme.lineColor;
+      pJS_instance.fn.particlesRefresh();
+    }
+
+    // --- 4. Função de Animação de Contador ---
+    function animateCounter(span) {
+      // Pega o valor alvo do atributo data-target no elemento pai (o H2)
+      const target = +span.parentElement.getAttribute('data-target');
+      if (isNaN(target)) {
+        console.error('data-target não encontrado ou não é um número');
+        return;
+      }
+
+      const duration = 1500; // 1.5 segundos para a animação
+      const stepTime = 15; // Atualiza a cada 15ms
+      const totalSteps = duration / stepTime;
+      const increment = target / totalSteps;
+      let current = 0;
+
+      const update = () => {
+        current += increment;
+        if (current < target) {
+          span.textContent = Math.floor(current);
+          setTimeout(update, stepTime);
+        } else {
+          span.textContent = target; // Garante que termine no valor exato
+        }
+      };
+      update();
+    }
+
+    function initializeApp() {
+      // Inicializa Particles.js
+      const initialIsDarkOnLoad = document.documentElement.classList.contains('dark');
+      const theme = initialIsDarkOnLoad ? particleThemes.dark : particleThemes.light;
+
+      particlesJS('particles-js',
+        {
+          "particles": {"number": {"value": 80, "density": {"enable": true, "value_area": 800}}, "color": {"value": theme.particleColor}, "shape": {"type": "circle"}, "opacity": {"value": 0.5, "random": false}, "size": {"value": 3, "random": true}, "line_linked": {"enable": true, "distance": 150, "color": theme.lineColor, "opacity": 0.4, "width": 1}, "move": {"enable": true, "speed": 2, "direction": "none", "out_mode": "out", "bounce": false}},
+          "interactivity": {"detect_on": "canvas", "events": {"onhover": {"enable": true, "mode": "grab"}, "onclick": {"enable": true, "mode": "push"}, "resize": true}, "modes": {"grab": {"distance": 140, "line_linked": {"opacity": 1}}, "push": {"particles_nb": 4}}},
+          "retina_detect": true
+        },
+        function () {
+          if (typeof pJSDom !== 'undefined' && pJSDom[0] && pJSDom[0].pJS) {
+            pJS_instance = pJSDom[0].pJS;
+          } else {
+            console.error('Falha ao obter a instância pJS no callback.');
+          }
+        }
+      );
+
+      // Inicializa Animação de Scroll
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+
+            const counter = entry.target.querySelector('.counter');
+            if (counter) {
+              animateCounter(counter);
+            }
+
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      revealElements.forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    initializeApp();
+
+  </script>
+</body>
+
+</html>

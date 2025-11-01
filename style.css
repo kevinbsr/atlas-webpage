@@ -1,0 +1,285 @@
+/* * style.css
+ * Abordagem: Mobile-First, Variáveis CSS, e Layouts Flex/Grid.
+ * Sem overengineering (sem frameworks pesados).
+ */
+
+/* * Variáveis Globais (Root)
+ * Facilita a manutenção do tema e a consistência.
+ */
+:root {
+    --color-primary: #0a192f;  /* Azul escuro (Imperial) */
+    --color-secondary: #fca311; /* Dourado/Laranja (Acento) */
+    --color-background: #ffffff;
+    --color-text: #333333;
+    --color-text-light: #f0f0f0;
+    
+    --font-primary: 'Inter', sans-serif;
+    --container-width: 1100px;
+    --border-radius: 8px;
+    --transition-speed: 0.3s ease;
+}
+
+/* * Reset Básico e Padrões
+ * 'box-sizing' é essencial para layouts sãos.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Performance: Scroll suave nativo */
+    font-size: 100%; /* 16px */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+/* * Utilitário: Container
+ * Centraliza o conteúdo (manutenibilidade).
+ */
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+/* * Estrutura Base
+ */
+.section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+/* * Header e Navegação
+ */
+.header {
+    background: var(--color-background);
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Performance: 'backdrop-filter' pode ser custoso, mas 'background' é leve */
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 700;
+    transition: color var(--transition-speed);
+}
+
+.nav-menu a:hover {
+    color: var(--color-secondary);
+}
+
+/* * Seção Hero
+ */
+.hero-section {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    background-color: #ffb703; /* Um pouco mais claro no hover */
+}
+
+/* * Serviços
+ */
+.services-grid {
+    display: grid;
+    gap: 1.5rem;
+    /* Mobile-first: 1 coluna */
+}
+
+.service-card {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.service-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+/* * Resultados (Prova Social)
+ */
+.results-section {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.results-grid {
+    display: flex;
+    flex-direction: column; /* Mobile-first */
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.result-metric {
+    text-align: center;
+}
+
+.metric-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+}
+
+.metric-label {
+    font-size: 1.1rem;
+}
+
+/* * Formulário de Contato (Clean Code)
+ */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Feedback de Status do Formulário */
+.form-status {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 700;
+}
+.form-status.success {
+    color: green;
+}
+.form-status.error {
+    color: red;
+}
+
+/* * Rodapé
+ */
+.footer {
+    background: #f4f4f4;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 700;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* * Responsividade (Desktop)
+ * Mobile-first: As regras acima são para mobile.
+ * Estas regras (min-width) se aplicam a telas maiores.
+ */
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .services-grid {
+        /* Layout em 3 colunas no desktop */
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .results-grid {
+        flex-direction: row; /* Lado a lado no desktop */
+        gap: 5rem;
+    }
+}
